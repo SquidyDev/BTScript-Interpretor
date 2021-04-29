@@ -52,11 +52,11 @@ namespace Bits_Script_Interpreter.Interpreter
                             i += 1;
                             break;
                         case "Print":
-                            if (ProgramVariable.Exists(section[i + 1], isFuncVariable, func))
+                            if (ProgramVariable.Exists(section[i + 1], false, func))
                             {
                                 if(ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).IsType("string")) 
                                 {
-                                    Console.WriteLine(Interpreter_String.GetWord(ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).ToString()));
+                                    Console.WriteLine(Interpreter_String.GetWord(ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).value.ToString()));
                                 }
                                 else 
                                 {

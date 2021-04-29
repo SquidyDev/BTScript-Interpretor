@@ -1,5 +1,3 @@
 [script main]
-string hello = "Hello World"
-Print hello
-string goodBye = "Goodbye World"
-Print goodBye
+string t = "Hello"
+Print t

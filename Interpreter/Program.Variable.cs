@@ -115,8 +115,18 @@ namespace Bits_Script_Interpreter.Program.Variable
 
         public static bool Exists(string key, bool isFunction, Function.Function func) 
         {
-            if(isFunction) { return func.functionVariable.ContainsKey(key); }
-            else { return variable.ContainsKey(key); }
+            if (isFunction) { return func.functionVariable.ContainsKey(key); }
+            else
+            {
+                if (variable.ContainsKey(key)) 
+                {
+                    return true;
+                }
+                else 
+                {
+                    return false;
+                }
+            }
         }
 
         public static void AddVariable(string variableName, object variableContent, bool isFunction, Function.Function func, string variableType) 
@@ -124,6 +134,10 @@ namespace Bits_Script_Interpreter.Program.Variable
             if (isFunction) 
             {
                 func.functionVariable.Add(variableName, new Var(variableContent, new string[0], variableType));
+            }
+            else 
+            {
+                variable.Add(variableName, new Var(variableContent, new string[0], variableType));
             }
         }
 
