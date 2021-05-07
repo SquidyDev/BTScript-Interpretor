@@ -131,5 +131,29 @@ namespace Bits_Script_Interpreter.Interpreter.String
             }
             return output;
         }
+
+        public static string[] ReadContentInBraces(string[] section, int start) 
+        {
+            List<string> output = new List<string>();
+
+            for(int i = start; i < section.Length; i++) 
+            {
+                if(section[i] == "}") 
+                {
+                    break;
+                }
+                else 
+                {
+                    output.Add(section[i]);
+                }
+            }
+
+            return output.ToArray();
+        }
+
+        public static int GetLineWhereBraceEnd(string[] section, int start) 
+        {
+            return ReadContentInBraces(section, start).Length + start;
+        }
     }
 }

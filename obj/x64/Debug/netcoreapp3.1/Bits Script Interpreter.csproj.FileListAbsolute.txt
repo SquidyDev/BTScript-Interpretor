@@ -1,0 +1,12 @@
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\bin\x64\Debug\netcoreapp3.1\Bits Script Interpreter.exe
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\bin\x64\Debug\netcoreapp3.1\Bits Script Interpreter.deps.json
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\bin\x64\Debug\netcoreapp3.1\Bits Script Interpreter.runtimeconfig.json
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\bin\x64\Debug\netcoreapp3.1\Bits Script Interpreter.runtimeconfig.dev.json
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\bin\x64\Debug\netcoreapp3.1\Bits Script Interpreter.dll
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\bin\x64\Debug\netcoreapp3.1\Bits Script Interpreter.pdb
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\obj\x64\Debug\netcoreapp3.1\Bits Script Interpreter.AssemblyInfoInputs.cache
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\obj\x64\Debug\netcoreapp3.1\Bits Script Interpreter.AssemblyInfo.cs
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\obj\x64\Debug\netcoreapp3.1\Bits Script Interpreter.csproj.CoreCompileInputs.cache
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\obj\x64\Debug\netcoreapp3.1\Bits Script Interpreter.dll
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\obj\x64\Debug\netcoreapp3.1\Bits Script Interpreter.pdb
+C:\Users\colop\Documents\Programation\C#\Bits Script Interpreter\Bits Script Interpreter\obj\x64\Debug\netcoreapp3.1\Bits Script Interpreter.genruntimeconfig.cache

@@ -4,7 +4,7 @@ namespace Bits_Script_Interpreter.Interpreter.Keyword
 {
     static class kword
     {
-        static string[] keywords = { 
+        static string[] keywords = {
             "Print",
             "PrintLine",
             "string",
@@ -13,7 +13,20 @@ namespace Bits_Script_Interpreter.Interpreter.Keyword
             "bool",
             "int",
             "false",
-            "true"
+            "true",
+            "[script",
+            "main]",
+            "Print",
+            "PrintLine"
+        };
+
+        static string[] symbols = {
+            "{",
+            "}",
+            "(",
+            ")",
+            "{}",
+            "()",
         };
 
         public static void KeywordList() 
@@ -26,6 +39,15 @@ namespace Bits_Script_Interpreter.Interpreter.Keyword
             foreach(string keyword in keywords) 
             {
                 if(keyword == key) { return true; }
+            }
+            return false;
+        }
+
+        public static bool isNotSymbol(string key) 
+        {
+            foreach(string symbol in symbols) 
+            {
+                if(symbol == key) { return true; }
             }
             return false;
         }

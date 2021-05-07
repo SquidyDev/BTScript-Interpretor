@@ -64,23 +64,18 @@ namespace Bits_Script_Interpreter.Program.Variable
                 case "string":
                     if (IsString(variableValue)) { return true; }
                     else { return false; }
-                    break;
                 case "double":
                     if (Interpreter_String.ContainsSingleChar(variableValue.ToString(), '.') && !Interpreter_String.ContainsSingleChar(variableValue.ToString(), '"')) { return true; }
                     else { return false; }
-                    break;
                 case "int":
                     if (!IsString(variableValue)) { return true; }
                     else { return false; }
-                    break;
                 case "bool":
                     if(variableValue.ToString() == "true" || variableValue.ToString() == "false") { return true; }
                     else { return false; }
-                    break;
                 case "char":
                     if (variableValue.ToString().Length == 3 && IsString(variableValue)) { return true; }
                     else { return false; }
-                    break;
             }
             return false;
         }

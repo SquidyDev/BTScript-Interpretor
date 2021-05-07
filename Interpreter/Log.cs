@@ -55,5 +55,31 @@ namespace Bits_Script_Interpreter.Interpreter.Log
                 Console.WriteLine(message);
             }
         }
+
+        public static void PrintMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(message);
+        }
+
+        public static void PrintWarning(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(message);
+        }
+
+        public static void PrintError(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+        }
+
+
+        public static void PrintError(bool isStopped, string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Variable.isError = isStopped;
+        }
     }
 }

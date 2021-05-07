@@ -1,5 +1,4 @@
 ﻿using System;
-using Bits_Script_Interpreter.Interpreter;
 
 namespace Bits_Script_Interpreter.Interpreter.Interpreter_Variable
 {
@@ -9,5 +8,7 @@ namespace Bits_Script_Interpreter.Interpreter.Interpreter_Variable
         public static string version = "1.0";
         public static OperatingSystem os = Environment.OSVersion; 
         public static bool isError = false;
+        public static bool needToJumpLine = false;
+        public static int lineToJumpIndex = 0;
     }
 }

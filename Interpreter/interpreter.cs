@@ -14,7 +14,7 @@ namespace Bits_Script_Interpreter.Interpreter
     {
         static string currentFile;
 
-        public static void InterpreteLine(string line, int lineIndex, Function func) 
+        public static void InterpreteLine(string line, int lineIndex, Function func, string[] lineList, int currentLineIndex) 
         {
             bool isFuncVariable = func == null ? false : true;
 
@@ -44,43 +44,43 @@ namespace Bits_Script_Interpreter.Interpreter
                         break;
                     }
 
-
-                    switch (section[i]) //Check for keyword
+                    if (section[i] == "PrintLine")
                     {
-                        case "PrintLine":
+                        if (ProgramVariable.Exists(section[i + 1], isFuncVariable, func))
+                        {
+                            if (ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).IsType("string"))
+                            {
+                                Console.WriteLine(Interpreter_String.GetWord(ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).value.ToString()));
+                            }
+                            else
+                            {
+                                Utilities.PrintError("Error at line : " + i.ToString() + " : Print only Accept string, not " + ProgramVariable.variable[section[i + 1]].type + ".", false);
+                            }
+                        }
+                        else
+                        {
                             Console.WriteLine(Interpreter_String.GetWord(section[i + 1]));
-                            i += 1;
-                            break;
-                        case "Print":
-                            if (ProgramVariable.Exists(section[i + 1], false, func))
+                        }
+                        break;
+                    } else if (section[i] == "Print")
+                    {
+                        if (ProgramVariable.Exists(section[i + 1], isFuncVariable, func))
+                        {
+                            if (ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).IsType("string"))
                             {
-                                if(ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).IsType("string")) 
-                                {
-                                    Console.WriteLine(Interpreter_String.GetWord(ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).value.ToString()));
-                                }
-                                else 
-                                {
-                                    Utilities.PrintError("Error at line : " + i.ToString() + " : Print only Accept string, not " + ProgramVariable.variable[section[i + 1]].type + ".", false);
-                                }
+                                Console.WriteLine(Interpreter_String.GetWord(ProgramVariable.GetVariable(section[i + 1], isFuncVariable, func).value.ToString()));
                             }
-                            else 
+                            else
                             {
-                                Console.Write(Interpreter_String.GetWord(section[i + 1]));
+                                Utilities.PrintError("Error at line : " + i.ToString() + " : Print only Accept string, not " + ProgramVariable.variable[section[i + 1]].type + ".", false);
                             }
-                            i += 1;
-                            break;
-                        case "[script":
-                            if(section[i + 1] == "main]") 
-                            {
-
-                            }
-                            break;
-                        case "main]":
-                            if (section[i - 1] == "[script")
-                            {
-                            }
-                            break;
-                    }
+                        }
+                        else
+                        {
+                            Console.Write(Interpreter_String.GetWord(section[i + 1]));
+                        }
+                        break;
+                    }else if(section[i] == "[script"){ break; }
 
                     try
                     {
@@ -95,6 +95,7 @@ namespace Bits_Script_Interpreter.Interpreter
                                         if (!kword.IsKeyword(section[i + 1]))
                                         {
                                             ProgramVariable.AddVariable(section[i + 1], section[i + 3], isFuncVariable, func, section[i]);
+                                            break;
                                         }
                                         else 
                                         {
@@ -139,8 +140,54 @@ namespace Bits_Script_Interpreter.Interpreter
                     }
                     catch 
                     {
-                        break;
-                    }  
+                        
+                    }
+
+                    if (section[i] == "function")
+                    {
+                        if (!kword.IsKeyword(section[i + 1]))
+                        {
+                            if (!Func.Exists(section[i + 1]))
+                            {
+                                Func.AddFunction(new Function(section[i + 1], Interpreter_String.ReadContentInBraces(lineList, currentLineIndex + 1)));
+                                Variable.needToJumpLine = true;
+                                Variable.lineToJumpIndex = Interpreter_String.GetLineWhereBraceEnd(lineList, currentLineIndex + 1);
+                                Utilities.PrintMessage($"[DEBUG] : Created function : {Func.GetFunction(section[i + 1]).ToString()}, skipping until line {Variable.lineToJumpIndex}", true);
+                                break;
+                            }
+                            else
+                            {
+                                Utilities.PrintError(true, $"Error at line {lineIndex}, Cannot create a function thats already exist (function : {section[i + 1]} Already Exist).");
+                            }
+                        }
+                        else
+                        {
+                            Utilities.PrintError(true, $"Error at line {lineIndex}, Cannot create a function thats as the same name then a keyword.");
+                        }
+                    }
+
+                    if (kword.IsKeyword(section[i]) == false && kword.isNotSymbol(section[i]) == false)
+                    {
+                        Utilities.PrintMessage($"section[i] is not a kword (section : {section[i]})", true);
+                        if (Func.Exists(section[i]))
+                        {
+                            if (Func.HasFunctionArs(section, i + 1))
+                            {
+                                Utilities.PrintMessage($"[DEBUG] : Started Function named {section[i]}", true);
+                                Func.GetFunction(section[i]).Run();
+                                break;
+                            }
+                            else 
+                            {
+                                Utilities.PrintError(true, $"Error at line {lineIndex}, missing () or missing argument when calling the function {section[i]}");
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Utilities.PrintError(true, $"Error at line {lineIndex}, Cannot call a function that doesn't exist (function : {section[i]} doesn't exist) (line : {line}).");
+                        }
+                    }
                 }
             }
         }
@@ -165,7 +212,32 @@ namespace Bits_Script_Interpreter.Interpreter
 
             for(int lineIndex = 0; lineIndex < line.Length; lineIndex++) 
             {
-                InterpreteLine(line[lineIndex], lineIndex + 1, null);
+                if (!Variable.needToJumpLine)
+                {
+                    Utilities.PrintMessage("[DEBUG] : needToJumpLine was set to False.", true);
+                    InterpreteLine(line[lineIndex], lineIndex + 1, null, line, lineIndex);
+                }
+                else 
+                {
+                    if(Variable.lineToJumpIndex == lineIndex) 
+                    {
+                        Utilities.PrintMessage($"[DEBUG] : End Of Line Skipping (line : {lineIndex}).", true);
+                        Variable.needToJumpLine = false;
+                    }
+                    else 
+                    {
+                        Utilities.PrintMessage($"[DEBUG] : Skipping Line (line : {lineIndex}) ...", true);
+                    }
+                }
+            }
+
+            if (Func.FunctionList.ContainsKey("Main"))
+            {
+                Func.FunctionList["Main"].Run();
+            }
+            else 
+            {
+                Utilities.PrintError("Error : File don't contain Main function...");
             }
         }
 

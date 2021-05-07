@@ -1,6 +1,4 @@
 ﻿using Bits_Script_Interpreter.Interpreter.Log;
-using Bits_Script_Interpreter.Interpreter.String;
-using Bits_Script_Interpreter.Interpreter;
 using Bits_Script_Interpreter.Program.Variable;
 using System.Collections.Generic;
 
@@ -10,6 +8,11 @@ namespace Bits_Script_Interpreter.Program.Function
     {
         //Function List
         private static Dictionary<string, Function> functionList = new Dictionary<string, Function>();
+
+        public static Dictionary<string, Function> FunctionList
+        {
+            get => functionList;
+        }
 
         //Add a function
         public static void AddFunction(Function function) 
@@ -22,6 +25,41 @@ namespace Bits_Script_Interpreter.Program.Function
         {
             return functionList.ContainsKey(functionName) ? functionList[functionName] : new Function();
         }
+
+        //Return True if the function Exist else return false
+        public static bool Exists(string key) 
+        {
+            if (functionList.ContainsKey(key)) { return true; }
+            else { return false; }
+        }
+
+        //Check if we do have Argument when calling the function
+        public static bool HasFunctionArs(string[] lineSection, int startIndex) 
+        {
+            int argumentCount;
+            List<string> argumentList = new List<string>();
+            string currentArgument = "";
+
+            /* Coming Later...
+            for(int i = startIndex; i < lineSection.Length; i++) 
+            {
+                string currentSection = lineSection[i];
+                if(currentSection == "()") { return true; }
+                else 
+                {
+                    if(currentSection[0] == '(') 
+                    {
+
+                        currentArgument += currentSection;
+                        currentArgument += " ";
+                        break;
+                    }
+                }
+            }
+            */
+
+            return true;
+        }
     }
 
     class Function 
@@ -31,12 +69,12 @@ namespace Bits_Script_Interpreter.Program.Function
         private string[] functionLine;
         public Dictionary<string, Var> functionVariable = new Dictionary<string, Var>();
 
-        //Run the code
+        //Run the Function
         public void Run() 
         {
             for(int index = 0; index < functionLine.Length; index++) 
             {
-                Interpreter.Interpreter.InterpreteLine(functionLine[index], index, this);
+                Interpreter.Interpreter.InterpreteLine(functionLine[index], index, this, functionLine, index);
             }
         }
 
@@ -70,6 +108,17 @@ namespace Bits_Script_Interpreter.Program.Function
             {
                 functionLine[i] = copy.functionLine[i];
             }
+        }
+
+        public override string ToString()
+        {
+            string output = $"FUNCTION : {functionName} ; function content : ";
+            foreach(string section in functionLine) 
+            {
+                output += "\n";
+                output += section;
+            }
+            return output;
         }
     }
 }
