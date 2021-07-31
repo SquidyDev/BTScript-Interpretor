@@ -1,0 +1,16 @@
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/bin/Debug/net5.0/Bits Script Interpreter
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/bin/Debug/net5.0/Bits Script Interpreter.deps.json
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/bin/Debug/net5.0/Bits Script Interpreter.runtimeconfig.json
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/bin/Debug/net5.0/Bits Script Interpreter.runtimeconfig.dev.json
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/bin/Debug/net5.0/Bits Script Interpreter.dll
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/bin/Debug/net5.0/ref/Bits Script Interpreter.dll
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/bin/Debug/net5.0/Bits Script Interpreter.pdb
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.csproj.AssemblyReference.cache
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.GeneratedMSBuildEditorConfig.editorconfig
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.AssemblyInfoInputs.cache
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.AssemblyInfo.cs
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.csproj.CoreCompileInputs.cache
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.dll
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/ref/Bits Script Interpreter.dll
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.pdb
+/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/Debug/net5.0/Bits Script Interpreter.genruntimeconfig.cache

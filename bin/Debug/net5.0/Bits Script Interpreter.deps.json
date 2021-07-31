@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Bits Script Interpreter/1.0.0": {
+        "runtime": {
+          "Bits Script Interpreter.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bits Script Interpreter/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

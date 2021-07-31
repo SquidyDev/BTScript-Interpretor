@@ -1,38 +1,36 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    "net5.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\colop\\.nuget\\packages\\": {}
+    "/home/matthias/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\colop\\Documents\\Programation\\C#\\Bits Script Interpreter\\Bits Script Interpreter\\Bits Script Interpreter.csproj",
+      "projectUniqueName": "/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/Bits Script Interpreter.csproj",
       "projectName": "Bits Script Interpreter",
-      "projectPath": "C:\\Users\\colop\\Documents\\Programation\\C#\\Bits Script Interpreter\\Bits Script Interpreter\\Bits Script Interpreter.csproj",
-      "packagesPath": "C:\\Users\\colop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\colop\\Documents\\Programation\\C#\\Bits Script Interpreter\\Bits Script Interpreter\\obj\\",
+      "projectPath": "/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/Bits Script Interpreter.csproj",
+      "packagesPath": "/home/matthias/.nuget/packages/",
+      "outputPath": "/media/matthias/Data/Documents/Programation/Bits Script/Interpreter/Bits Script Interpreter/Bits Script Interpreter/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\colop\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/matthias/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "projectReferences": {}
         }
       },
@@ -43,8 +41,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net5.0": {
+        "targetAlias": "net5.0",
         "imports": [
           "net461",
           "net462",
@@ -60,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
       }
     }
   }

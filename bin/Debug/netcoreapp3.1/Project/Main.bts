@@ -1,9 +1,0 @@
-function Main () {
-PrintLine "Started Progam..."
-SecondFunction
-PrintLine "Ended Program..."
-}
-function SecondFunction () {
-PrintLine "Called Second Function..."
-PrintLine "Ended Second Function..."
-}
