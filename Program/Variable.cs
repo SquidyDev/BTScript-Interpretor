@@ -80,10 +80,10 @@ namespace Bits_Script_Interpreter.Program.Variable
             }
         }
 
-        public static Var GetVariable(string key) 
+        public static Var GetVariable(string key, bool stop) 
         {
             if (programVariables.ContainsKey(key)) return programVariables[key];
-            else Debug.Error(true, $"ERROR : Usage of a non defined variable ({key})"); return null;
+            else /*Debug.Error(stop, $"ERROR : Usage of a non defined variable ({key})");*/ return null;
         }
     }
 

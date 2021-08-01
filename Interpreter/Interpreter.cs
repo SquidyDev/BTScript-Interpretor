@@ -99,6 +99,9 @@ namespace Bits_Script_Interpreter.Interpreter
 
         public void InterpreteLine(string line, string[] programLine, int lineIndex)
         {
+            if(line.StartsWith('$')) Debug.Log("Comment, skipping line", true); return;
+            if(line.Trim() == "") Debug.Log("Empty Line, skipping line", true); return;
+
             string[] lineSection = line.Split(' ');
 
             if (lineSection[0] == "print")

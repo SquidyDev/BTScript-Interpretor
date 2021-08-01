@@ -19,7 +19,7 @@ namespace Bits_Script_Interpreter.Interpreter.Builtins
             {
                 if (Program_Variable.Exist(assembledMemoryBlock)) 
                 {
-                    Console.WriteLine(Interpreter_String.RemoveQuoteMarks(Program_Variable.GetVariable(Interpreter_String.Remove(assembledMemoryBlock, ' ')).value.ToString()));
+                    Console.WriteLine(Interpreter_String.RemoveQuoteMarks(Program_Variable.GetVariable(Interpreter_String.Remove(assembledMemoryBlock, ' '), false).value.ToString()));
                 }
                 else { Debug.Error(true, $"ERROR : Usage of a non defined variable, in function Builtins.Print(string[] BLOCK) (variable {assembledMemoryBlock} does not exist in the context)"); }
             }

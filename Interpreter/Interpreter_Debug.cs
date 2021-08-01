@@ -20,7 +20,7 @@ namespace Bits_Script_Interpreter.Interpreter
             {
                 if (Interpreter_Variable.debug) 
                 {
-                    Console.WriteLine(message);
+                    Console.WriteLine("DEBUG : " + message);
                 }
             }
             else 

@@ -134,5 +134,16 @@ namespace Bits_Script_Interpreter.Interpreter.String
 
             return output;
         }
+
+        public static bool ArrayContains<T>(T[] array, T element)
+        {
+            dynamic e = element;
+            foreach(T t in array) 
+            {
+                dynamic value  = t; 
+                if(value == e) return true;
+            }
+            return false;
+        }
     }
 }

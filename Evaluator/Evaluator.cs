@@ -4,6 +4,13 @@ using Bits_Script_Interpreter.Interpreter.String;
 using Bits_Script_Interpreter.Program.Variable;
 using System.Collections.Generic;
 
+/*
+<summary>
+    An evaluator to evaluate int expr.
+    it doesn't support () actually. 
+    It support variable.
+</summary>
+*/
 namespace Bits_Script_Interpreter.Evaluator
 {
     enum Type
@@ -14,6 +21,14 @@ namespace Bits_Script_Interpreter.Evaluator
 
     static class Interpreter_Evaluator
     {
+        static char[] operators = 
+        {
+            '+',
+            '-',
+            '*',
+            '/'
+        }; 
+
         public static int Evaluate(string expression)
         {
             string[] evaluation = PreProcessEvaluation(ParseEvaluation(expression));
@@ -27,17 +42,17 @@ namespace Bits_Script_Interpreter.Evaluator
 
         public static bool IsOperator(string code)
         {
-            foreach (char c in code)
+            foreach(char c in code)
             {
-                if(char.IsDigit(c)){return false;}
+                if(Interpreter_String.ArrayContains<char>(operators, c)) return true;
             }
 
-            return true;
+            return false;
         }
 
         public static bool IsOperator(char code)
         {
-            if(code == '*' || code == '/' || code == '+' || code == '-')    return true;
+            if(Interpreter_String.ArrayContains<char>(operators, code)) return true;
 
             return false;
         }
@@ -62,12 +77,21 @@ namespace Bits_Script_Interpreter.Evaluator
             return int.TryParse(c, out int n);
         }
 
-        public static bool CanBeEvaluated(string block)
+        public static bool IsVariable(string str)
         {
-            foreach (char c in block)
+            return Program_Variable.Exist(str);
+        }
+
+        public static bool CanBeEvaluated(string nonSplittedBlock)
+        {
+            string[] splittedBlock = nonSplittedBlock.Split(' ');
+
+            foreach(string str in splittedBlock)
             {
-                if(!IsOperator(c) && !IsNumber(c) && c != ' ') return false;
+                if(!IsOperator(str) && !IsNumber(str) && !IsVariable(str)) return false;
             }
+
+            Debug.Log($"Expression {nonSplittedBlock} can be evaluated !", true);
 
             return true;
         }
@@ -113,21 +137,45 @@ namespace Bits_Script_Interpreter.Evaluator
 
         private static string[] ReplaceVariable(string[] parsedEvaluation)
         {
+            List<string> output = new List<string>();
+
+            Debug.Log(Interpreter_String.AssembleArray<string, string>(parsedEvaluation, 0, "--"), true);
+
             for(int i = 0; i < parsedEvaluation.Length; i++)
             {
-                string eval = parsedEvaluation[i];
+                output.Add(parsedEvaluation[i]);
 
-                if(IsOperator(eval) || IsNumber(eval)) { continue; }
+                if(IsOperator(output[i]) || IsNumber(output[i]))
+                {
+                    Debug.Log($"{output[i]} is a operator or a number !", true);
+                    continue;
+                }
 
-                parsedEvaluation[i] = Program_Variable.GetVariable(eval).value.ToString();
+                if(Program_Variable.Exist(output[i]))
+                {
+                    Debug.Log($"{output[i]} is a variable !", true);
+                    if(Program_Variable.GetVariable(output[i], false) == null) 
+                    {
+                        Debug.Log($"variable was null", true);
+                        continue;
+                    }
+                    else 
+                    {
+                        Debug.Log($"variable was not null", true);
+                        output[i] = Program_Variable.GetVariable(output[i], false).value.ToString();
+                    }
+                }
             }
 
-            return parsedEvaluation;
+            return output.ToArray();
         }
 
         private static string[] ParseEvaluation(string evaluation)
         {
-            string[] splittedEvaluation = evaluation.Split(' ');
+            string cleanedEvaluation = evaluation.Trim('\r', '\n');
+            string[] splittedEvaluation = cleanedEvaluation.Split(' ');
+
+            Debug.Log($"EXPRESSION WITH REPLACED VARIABLE : {Interpreter_String.AssembleArray<string, char>(ReplaceVariable(splittedEvaluation), 0, ' ')}", true);
 
             return ReplaceVariable(splittedEvaluation);
         }
