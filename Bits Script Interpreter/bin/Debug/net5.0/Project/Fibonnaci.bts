@@ -1,0 +1,15 @@
+$This program is use to make the fibonacci suit
+
+n1 = 0
+n2 = 1
+
+print "La suite de fibonacci : "
+
+loop 10 {
+    suivant = n1 + n2
+
+    print suivant
+
+    n1 = n2
+    n2 = suivant
+}
