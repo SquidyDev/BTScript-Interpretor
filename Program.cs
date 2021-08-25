@@ -3,7 +3,6 @@ using Bits_Script_Interpreter.Interpreter.Variable;
 using Bits_Script_Interpreter.Program.Variable;
 using Bits_Script_Interpreter.Interpreter;
 using Bits_Script_Interpreter.Compiler;
-using Bits_Script_Interpreter.Evaluator;
 
 namespace Bits_Script_Interpreter
 {
@@ -42,5 +41,5 @@ namespace Bits_Script_Interpreter
                 Debug.Log("Sucessfully compiled into ProjPath/Bin/Build.btsLib");
             }
         }
-    }
+    }    
 }

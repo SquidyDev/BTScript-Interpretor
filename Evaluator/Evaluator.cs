@@ -29,11 +29,11 @@ namespace Bits_Script_Interpreter.Evaluator
             '/'
         }; 
 
-        public static int Evaluate(string expression)
+        public static double Evaluate(string expression)
         {
             string[] evaluation = PreProcessEvaluation(ParseEvaluation(expression));
 
-            int result = Interpreter_Evaluator_Core.ResolveEvaluation(evaluation);
+            double result = Interpreter_Evaluator_Core.ResolveEvaluation(evaluation);
 
             Debug.Log($"The resul of the evaluation is {result}", true);
             
@@ -74,7 +74,7 @@ namespace Bits_Script_Interpreter.Evaluator
 
         public static bool IsNumber(string c)
         {
-            return int.TryParse(c, out int n);
+            return double.TryParse(c, out double n);
         }
 
         public static bool IsVariable(string str)
@@ -84,28 +84,31 @@ namespace Bits_Script_Interpreter.Evaluator
 
         public static bool CanBeEvaluated(string nonSplittedBlock)
         {
-            string[] splittedBlock = nonSplittedBlock.Split(' ');
+            try{
+                double r = Evaluate(nonSplittedBlock);
 
-            foreach(string str in splittedBlock)
+                if(r == -7.86975) return false;
+
+                Debug.Log($"The expression : {nonSplittedBlock} can be evaluated so it is a double. (result is : {Evaluate(nonSplittedBlock)})", true);
+
+                return true;
+            }catch
             {
-                if(!IsOperator(str) && !IsNumber(str) && !IsVariable(str)) return false;
+                Debug.Log($"The expression {nonSplittedBlock} cannot be evaluated so it is not a double.", true);
+                return false;
             }
-
-            Debug.Log($"Expression {nonSplittedBlock} can be evaluated !", true);
-
-            return true;
         }
 
         static private class Interpreter_Evaluator_Core
         {
-            public static int Add(string a, string b){ return System.Convert.ToInt32(a) + System.Convert.ToInt32(b); }
-            public static int Sub(string a, string b){ return System.Convert.ToInt32(a) - System.Convert.ToInt32(b);}
-            public static int Mul(string a, string b){ return System.Convert.ToInt32(a) * System.Convert.ToInt32(b);}
-            public static int Div(string a, string b){ return System.Convert.ToInt32(a) / System.Convert.ToInt32(b);}
+            public static double Add(string a, string b){ return double.Parse(a) + double.Parse(b); }
+            public static double Sub(string a, string b){ return double.Parse(a) - double.Parse(b);}
+            public static double Mul(string a, string b){ return double.Parse(a) * double.Parse(b);}
+            public static double Div(string a, string b){ return double.Parse(a) / double.Parse(b);}
 
-            public static int ResolveEvaluation(string[] evaluation)
+            public static double ResolveEvaluation(string[] evaluation)
             {
-                int last = System.Convert.ToInt32(evaluation[0]);
+                double last = double.Parse(evaluation[0]);
 
                 for(int i = 1; i < evaluation.Length; i++)
                 {
@@ -128,6 +131,9 @@ namespace Bits_Script_Interpreter.Evaluator
                                 last = Mul(last.ToString(), evaluation[i + 1]);
                                 break;
                         }
+                    }else if(double.TryParse(eval, out double d))
+                    {
+                        return -7.86975;
                     }
                 }
 
@@ -192,7 +198,7 @@ namespace Bits_Script_Interpreter.Evaluator
                 {
                     if(IsPriotaryOperator(current))
                     {
-                        int result = 0;
+                        double result = 0;
 
                         switch(current)
                         {
