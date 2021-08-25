@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{E96B40F3-0860-4789-A83C-E7B13A5969E2}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bits Script Interpreter/Program.cs">
+    <Files>
+      <File FileName="Bits Script Interpreter/Program.cs" Line="15" Column="15" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Bits Script Interpreter" expanded="True">
+            <Node name="Bits Script Interpreter" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Bits_220Script_220Interpreter PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
