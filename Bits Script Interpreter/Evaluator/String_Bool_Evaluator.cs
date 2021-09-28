@@ -8,6 +8,7 @@ namespace Bits_Script_Interpreter.Evaluator.String.Bool
 {
     static class Interpreter_String_Bool_Evaluator
     {
+        /*Use to evaluate the expression*/
         public static bool Evaluate(string expression)
         {
             string[] parsedEvaluation = ParseEvaluation(expression);
@@ -17,6 +18,7 @@ namespace Bits_Script_Interpreter.Evaluator.String.Bool
             return result;
         }
 
+        /*Parse the evaluations*/
         static string[] ParseEvaluation(string expression)
         {
             return Interpreter_String_Evaluator_Core.ParseEvaluation(expression);
@@ -24,9 +26,11 @@ namespace Bits_Script_Interpreter.Evaluator.String.Bool
 
         static class Interpreter_String_Bool_Evaluator_Core
         {
+            /*Basic Comparison operation*/
             static bool Equal(string a, string b) {return a == b;}
             static bool NotEqual(string a, string b) {return a != b;}
 
+            /*Apply boolean operation depending on the sign the resolver encounter*/
             public static bool ResolveEvaluation(string[] expression)
             {
                 bool result = true;

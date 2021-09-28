@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Bits_Script_Interpreter.Program.Variable;
+using Bits_Script_Interpreter.Interpreter.Variable;
 using Bits_Script_Interpreter.Interpreter.String;
 using Bits_Script_Interpreter.Interpreter.Builtins;
 using Bits_Script_Interpreter.Interpreter.Loop;
@@ -22,6 +23,7 @@ namespace Bits_Script_Interpreter.Interpreter
         }
     }
 
+    /*Use to know if there are line(s) to skip.*/
     static class Interpreter_Core_Variable
     {
         private static bool needToJumpLine = false;
@@ -47,6 +49,7 @@ namespace Bits_Script_Interpreter.Interpreter
         string filePath;
         string file;
 
+        //Use to interprete the code
         void Interprete()
         {
             string[] fileLine = File.ReadAllLines(file);
@@ -73,8 +76,11 @@ namespace Bits_Script_Interpreter.Interpreter
                     InterpreteLine(fileLine[line], fileLine, line, null, false, false, null);
                 }
             }
+
+            Program_Function.Run("Main", Interpreter_Variable.nullArgument);
         }
 
+        /*Check if the file exist and has the extension .bts*/
         void CheckForFile(string file)
         {
             string[] rawFilePath = file.Split('.');
@@ -92,6 +98,7 @@ namespace Bits_Script_Interpreter.Interpreter
             Interprete();
         }
 
+        /*Basic Constructor*/
         public Interpreter(string file)
         {
             this.file = file;
@@ -99,6 +106,16 @@ namespace Bits_Script_Interpreter.Interpreter
             CheckForFile(file);
         }
 
+        /*  Use to Interprete a line
+         * Argument :
+         *  line : the line to interprete
+         *  programLine : List of line in the current file
+         *  lineIndex : the current line index.
+         *  scopeVariable, a list of string containing the scoped variable
+         *  isScopped : Are we in a scope
+         *  isFunction : are we in a function
+         *  function : the function name we are in
+         */
         public static void InterpreteLine(string line, string[] programLine, int lineIndex, List<string> scopeVariable, bool isScopped, bool isFunction, string function)
         {
             try 
@@ -157,7 +174,10 @@ namespace Bits_Script_Interpreter.Interpreter
 
                 if(lineSection[0] == "import")
                 {
+                    Debug.Log($"Importing {Interpreter_String.AssembleArray<string, char>(lineSection, 1, ' ')}", true);
                     Interpreter_Import_Handler.Import(lineSection);
+                    Debug.Log("Finished import.", true);
+                    Interpreter_Core_Variable.Set(false, 0);      
                 }
 
                 if (lineSection[1] == "=")

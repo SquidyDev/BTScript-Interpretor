@@ -7,6 +7,7 @@ namespace Bits_Script_Interpreter.Evaluator.String.Core
 {
     static class Interpreter_String_Evaluator_Core
     {
+        /*Parse the evaluation*/
         public static string[] ParseEvaluation(string evaluation)
         {
             List<string> output = new List<string>();
@@ -56,7 +57,8 @@ namespace Bits_Script_Interpreter.Evaluator.String.Core
 
             return output.ToArray();
         }
-
+        
+        /*Check if the evaluation contains string*/
         public static bool ContainString(string evaluation)
         {
             string[] splitted = evaluation.Split(' ');

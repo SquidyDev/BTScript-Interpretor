@@ -10,5 +10,7 @@ calleable abs a {
 	return b
 }
 
-c = call abs 250
-print c
+calleable Main args {
+	c = call abs 250
+	print c
+}

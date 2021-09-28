@@ -21,6 +21,7 @@ namespace Bits_Script_Interpreter.Evaluator
 
     static class Interpreter_Evaluator
     {
+        /*list of double operator*/
         static char[] operators = 
         {
             '+',
@@ -29,6 +30,7 @@ namespace Bits_Script_Interpreter.Evaluator
             '/'
         }; 
 
+        /*Evaluate an expression and return a double depending on it's result*/
         public static double Evaluate(string expression)
         {
             string[] evaluation = PreProcessEvaluation(ParseEvaluation(expression));
@@ -40,6 +42,7 @@ namespace Bits_Script_Interpreter.Evaluator
             return result;
         }
 
+        /*Check if a string is an operator*/
         public static bool IsOperator(string code)
         {
             foreach(char c in code)
@@ -50,6 +53,7 @@ namespace Bits_Script_Interpreter.Evaluator
             return false;
         }
 
+        /*Check if a char is an operator*/
         public static bool IsOperator(char code)
         {
             if(Interpreter_String.ArrayContains<char>(operators, code)) return true;
@@ -57,6 +61,7 @@ namespace Bits_Script_Interpreter.Evaluator
             return false;
         }
 
+        /*Check if a number is a priotary operator (* ; /)*/
         public static bool IsPriotaryOperator(string code)
         {
             if(code == "*" || code == "/")
@@ -67,21 +72,25 @@ namespace Bits_Script_Interpreter.Evaluator
             return false;
         }
 
+        /*Check if a char is an operator*/
         public static bool IsNumber(char c)
         {
             return char.IsDigit(c);
         }
 
+        /*Check if a string is an operator*/
         public static bool IsNumber(string c)
         {
             return double.TryParse(c, out double n);
         }
 
+        /*Check if the variable exist*/
         public static bool IsVariable(string str)
         {
             return Program_Variable.Exist(str);
         }
 
+        /*Check if an expression can be evaluated as a double*/
         public static bool CanBeEvaluated(string nonSplittedBlock)
         {
             try{
@@ -101,11 +110,13 @@ namespace Bits_Script_Interpreter.Evaluator
 
         static private class Interpreter_Evaluator_Core
         {
+            /*Following functions are for arithmetic operation*/
             public static double Add(string a, string b){ return double.Parse(a) + double.Parse(b); }
             public static double Sub(string a, string b){ return double.Parse(a) - double.Parse(b);}
             public static double Mul(string a, string b){ return double.Parse(a) * double.Parse(b);}
             public static double Div(string a, string b){ return double.Parse(a) / double.Parse(b);}
 
+            /*Execute arithmetic operation depending on the sign encouter*/
             public static double ResolveEvaluation(string[] evaluation)
             {
                 double last = double.Parse(evaluation[0]);
@@ -141,6 +152,7 @@ namespace Bits_Script_Interpreter.Evaluator
             }
         }
 
+        /*Replace the variable by their value*/
         private static string[] ReplaceVariable(string[] parsedEvaluation)
         {
             List<string> output = new List<string>();
@@ -176,6 +188,7 @@ namespace Bits_Script_Interpreter.Evaluator
             return output.ToArray();
         }
 
+        /*Parse the evaluation*/
         private static string[] ParseEvaluation(string evaluation)
         {
             string cleanedEvaluation = evaluation.Trim('\r', '\n');
@@ -186,6 +199,7 @@ namespace Bits_Script_Interpreter.Evaluator
             return ReplaceVariable(splittedEvaluation);
         }
 
+        /*Use to Preprocess the evaluation (do priority sign)*/
         private static string[] PreProcessEvaluation(string[] evaluation)
         {
             List<string> output = Interpreter_String.ArrayToList<string>(evaluation);

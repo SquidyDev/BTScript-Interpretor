@@ -8,6 +8,7 @@ namespace Bits_Script_Interpreter.Interpreter.Builtins
 {
     static class Interpreter_Builtins
     {
+        /*Output a string to the screeen*/
         public static void Print(string[] BLOCK)
         {
             string assembledMemoryBlock = Interpreter_String.AssembleArray<string, char>(BLOCK, 1, ' ');

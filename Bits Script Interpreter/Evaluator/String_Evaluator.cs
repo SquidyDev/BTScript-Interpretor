@@ -8,6 +8,7 @@ namespace Bits_Script_Interpreter.Evaluator.String
 {
     static class Interpreter_String_Evaluator
     {
+        /*Check if the expression can be evaluate as a string*/
         public static bool CanBeEvaluated(string expression)
         {
             try 
@@ -22,6 +23,7 @@ namespace Bits_Script_Interpreter.Evaluator.String
             }
         }
 
+        /*Use to evaluate the expression*/
         public static string Evaluate(string expression)
         {
             string[] parsedExpression = ParseEvaluation(expression);
@@ -35,6 +37,7 @@ namespace Bits_Script_Interpreter.Evaluator.String
             return result;
         }
 
+        /*Use to parse the expression*/
         static string[] ParseEvaluation(string evaluation)
         {
             return Interpreter_String_Evaluator_Core.ParseEvaluation(evaluation);
@@ -42,8 +45,10 @@ namespace Bits_Script_Interpreter.Evaluator.String
 
         static class String_Evaluator_Core
         {
+            /*Basic Arithmetic operation for string*/
             static string Add(string a, string b) {return a + b;}
 
+            /*Execute arithmetic operation depending on the sign the resolver encounter*/
             public static string ResolveEvaluation(string[] expr)
             {
                 string last = expr[0].Trim();

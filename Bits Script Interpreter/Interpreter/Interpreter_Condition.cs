@@ -23,14 +23,17 @@ namespace Bits_Script_Interpreter.Interpreter.Condition
             }
         }
 
+        /*Use to do condition*/
         public static void Condition(string[] lines, int startIndex, string condition, bool isInFunction, string function)
         {
+            //Check if the condition is true, get the content in the statement, and create a list of the scope variable 
             List<string> scopeVariable = new List<string>();
             string[] statementContent = Interpreter_Condition_Core.ReadBraceContent(lines, startIndex);
             bool? isConditionTrue = GetConditionResult(condition);
 
             int numberOFLineToJump = 0;
 
+            //If the condition is true run the code in the if statement
             if(isConditionTrue == true)
             {
                 Debug.Log("Expression is true, running code !", true);
@@ -58,6 +61,7 @@ namespace Bits_Script_Interpreter.Interpreter.Condition
 
             numberOFLineToJump += statementContent.Length;
 
+            //If there is an else and the condition is false, run the code in the false statement
             if(statementContent[statementContent.Length - 1].Contains("else"))
             {
                 Debug.Log("There is an else !", true);
@@ -76,6 +80,7 @@ namespace Bits_Script_Interpreter.Interpreter.Condition
                 Debug.Log("There is no else, skipping line(s) !", true);
             }
 
+            //Delete all the scoped variable
             Program_Variable.DeleteScopeVariable(scopeVariable);
             scopeVariable.Clear();
 

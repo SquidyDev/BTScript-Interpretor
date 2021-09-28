@@ -17,12 +17,14 @@ namespace Bits_Script_Interpreter.Interpreter.Loop
     {
         public static void Loop(string[] lines, int currentLine, int time, bool isFunction, string function)
         {
+            //Create the scope variable list and read the content in brace
             List<string> scopeVariable = new List<string>();
             string[] loopContent = Interpreter_String.ReadBraceContent(lines, currentLine);
 
             Debug.Log("Loop Content : ", true);
             Debug.Log(Interpreter_String.AssembleArray<string, char>(loopContent, 0, '\n'), true);
 
+            //Loop the code by time
             for(int i = 0; i < time; i++)
             {
                 for(int j = 0; j < loopContent.Length; j++)
@@ -31,6 +33,7 @@ namespace Bits_Script_Interpreter.Interpreter.Loop
                 }
             }
 
+            //Clear the scope variable.
             Program_Variable.DeleteScopeVariable(scopeVariable);
             scopeVariable.Clear();
 

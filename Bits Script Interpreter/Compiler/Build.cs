@@ -8,6 +8,7 @@ namespace Bits_Script_Interpreter.Compiler.Builder
 {
     static class Build
     {
+        /*Save The function and The variable in a .btsLib File*/
         public static void BuildProgram(Dictionary<string, Var> variableList, string path) 
         {
             FileStream stream = new FileStream(path, FileMode.OpenOrCreate);

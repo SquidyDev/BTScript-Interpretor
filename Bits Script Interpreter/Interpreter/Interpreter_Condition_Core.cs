@@ -6,6 +6,7 @@ namespace Bits_Script_Interpreter.Interpreter.Condition
 {
     static class Interpreter_Condition_Core
     {
+        /*Read the content in brace ({}*/
         public static string[] ReadBraceContent(string[] lines, int startIndex)
         {
             List<string> output = new List<string>();

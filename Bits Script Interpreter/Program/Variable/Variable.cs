@@ -11,15 +11,18 @@ namespace Bits_Script_Interpreter.Program.Variable
 {
     static class Program_Variable
     {
-        public static readonly int GLOBAL_VARIABLE_SCOPE = 0;
+        public static readonly int GLOBAL_VARIABLE_SCOPE = 0; //Decapted Scope system
 
+        //Variable list in the program
         public static Dictionary<string, Var> programVariables = new Dictionary<string, Var>();
 
+        //Use to get the type of variable
         public static string GetType(object value) 
         {
             return Interpreter_Type.GetStringType(value);
         }
 
+        //Check if a variable is of a specific type
         public static bool IsType(string variable, string type)
         {
             if(Exist(variable)) 
@@ -32,6 +35,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             return false;
         }
 
+        //Use to add a variable (malloc = memory allocation (Name taken from C function malloc))
         public static void malloc(string[] block, List<string> scopeVariable, bool scoppedMalloc) 
         {
             Debug.Log($"Variable {block[0]} is {programVariables.ContainsKey(block[0])}", true);
@@ -53,6 +57,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             }
         }
 
+        //Use to remove a variable by it's name
         public static void RemoveVariable(string name) 
         {
             if (Exist(name)) 
@@ -65,6 +70,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             }
         }
 
+        //Remove all the variable from a scope
         public static void DeleteScopeVariable(List<string> scopeVariable) 
         {
             foreach(string variable in scopeVariable)
@@ -73,6 +79,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             }
         }
 
+        //Use to change a variable Value
         public static string ChangeVariable(string variable, string[] block) 
         {
             string newValue = Interpreter_String.AssembleArray<string, char>(block, 2, ' ');
@@ -95,6 +102,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             return newValue;
         }
 
+        //Use to check if a variable exist
         public static bool Exist(string variableName) 
         {
             DEBUG_PRINT_VAR_LIST();
@@ -103,6 +111,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             else return false;
         }
 
+        //Use to Add A variable (Use malloc to add variable)
         public static void AddVariable(string name, object value) 
         {
             if(value.ToString().Split(' ')[0] == "call") 
@@ -145,6 +154,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             DEBUG_PRINT_VAR_LIST();
         }
 
+        //Print the list of variable
         private static void DEBUG_PRINT_VAR_LIST() 
         {
             Debug.Log("Variable list is now : ", true);
@@ -155,6 +165,7 @@ namespace Bits_Script_Interpreter.Program.Variable
             }
         }
 
+        //Return a variable by it's name
         public static Var GetVariable(string key, bool stop) 
         {
             if (programVariables.ContainsKey(key)) return programVariables[key];
@@ -165,16 +176,19 @@ namespace Bits_Script_Interpreter.Program.Variable
     [System.Serializable]
     class Var 
     {
+        /*Name, value and type of a variable*/
         public string type;
         public object value;
         public string name;
+
+        //Return true if the variable is a string
         public bool IsString()
         {
             if(type == "string") return true;
             else return false;
         }
 
-        //Constructor
+        //Constructor for variable
         public Var(string name, string type, object value)
         {
             this.type = type;

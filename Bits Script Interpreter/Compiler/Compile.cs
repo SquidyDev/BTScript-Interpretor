@@ -8,6 +8,7 @@ namespace Bits_Script_Interpreter.Compiler
 {
     static class Compile
     {
+        /*Use to build the project*/
         private static void BuildApp(Dictionary<string, Var> variabeList, string path) 
         {
             Build.BuildProgram(variabeList, path);

@@ -6,8 +6,16 @@ using Bits_Script_Interpreter.Compiler;
 
 namespace Bits_Script_Interpreter
 {
+    /// <summary>
+    /// BTScript :
+    /// an intuitive and easy programming langage
+    /// the following is the source code, all the code is commented 
+    /// This Code is under Apache 2.0 Liscence (https://www.apache.org/licenses/LICENSE-2.0)
+    /// Have fun and create amazing thing with the base code :D
+    /// </summary>
     class Class_Main
     {
+        /*Default Program Function*/
         static void Main(string[] args)
         {
             Debug.Log($"Bits Script Interpreter - Version {Interpreter_Variable.version} - Running on {Interpreter_Variable.OS.VersionString}");

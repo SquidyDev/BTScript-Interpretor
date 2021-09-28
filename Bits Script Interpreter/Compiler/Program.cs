@@ -3,6 +3,7 @@ using Bits_Script_Interpreter.Program.Variable;
 
 namespace Bits_Script_Interpreter.Compiler.Program
 {
+    /*Contain Functions & Variables when the program is compiled*/
     [System.Serializable]
     class ProgramBuild
     {

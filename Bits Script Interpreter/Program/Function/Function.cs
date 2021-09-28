@@ -7,8 +7,10 @@ namespace Bits_Script_Interpreter.Program.Function
 {
     static class Program_Function 
     {
+        //List of function(s) in the program
         private static Dictionary<string, Calleable> functions = new Dictionary<string, Calleable>();
 
+        //Use to add a function
         public static void AddFunction(string name, string[] arguments, string[] lines)
         {
             Debug.Log($"Added function named {name}, With argument {Interpreter_String.AssembleArray<string, string>(arguments, 0, ";")}, line content is : {Interpreter_String.AssembleArray<string, char>(lines, 0, '\n')}", true);
@@ -28,6 +30,7 @@ namespace Bits_Script_Interpreter.Program.Function
             Interpreter_Core_Variable.Set(true, lines.Length);
         }
 
+        //Use to get a function by it's name
         public static Calleable GetFunction(string name)
         {
             if(!Exists(name)) Debug.Error(true, $"Function {name} does not exist in the current context");
@@ -38,11 +41,13 @@ namespace Bits_Script_Interpreter.Program.Function
             return null;
         }
 
+        //Check if a special function exist
         public static bool Exists(string name)
         {
             return functions.ContainsKey(name);
         }
 
+        //Use to run a function
         public static object Run(string name, string[] arguments)
         {
             Interpreter_Core_Variable.Set(false,0);
@@ -70,14 +75,15 @@ namespace Bits_Script_Interpreter.Program.Function
         }
     }
 
+    //Function Class
     class Calleable
     {
-        string name;
-        object returnValue;
+        string name; //Function Name
+        object returnValue; //it's return value
 
-        public List<string> scopeVariable = new List<string>();
+        public List<string> scopeVariable = new List<string>(); //The list of variable created in the function scope
 
-        public object ReturnValue 
+        public object ReturnValue //Use to get and set the return value
         {
             get {return returnValue;}
             set {
@@ -86,18 +92,20 @@ namespace Bits_Script_Interpreter.Program.Function
             }
         }
 
-        public string[] argumentsName = null;
+        public string[] argumentsName = null; //List of argument name
 
-        string[] lines;
+        string[] lines; //Lines of code in the function
 
-        public bool stopRunning = false;
+        public bool stopRunning = false; //If the function need to srop running
 
+        //Default constructor
         public Calleable(string name, string[] lines)
         {
             this.name = name;
             this.lines = lines;
         }
 
+        //Better Constructor
         public Calleable(string name, string[] lines, string[] argumentsName)
         {
             this.name = name;
@@ -136,7 +144,8 @@ namespace Bits_Script_Interpreter.Program.Function
             }
         }
 
-        //Reset the function returnValue, argument value, and variable
+        //Reset the function returnValue, argument value, and variable need to be called every time a function end or stop running
+        //If not called this could break the function
         public void Flush()
         {
             returnValue = null;

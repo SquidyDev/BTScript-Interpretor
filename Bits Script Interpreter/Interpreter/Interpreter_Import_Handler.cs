@@ -7,10 +7,10 @@ namespace Bits_Script_Interpreter.Interpreter.Import_Handler
 {
     static class Interpreter_Import_Handler
     {
+        /*Use to import content from an other file*/
         public static void Import(string[] line)
         {
             string importName = Interpreter_String.AssembleArray<string, char>(line, 1, ' ');
-
             string[] fileImportContent = File.ReadAllLines("Project/" + importName.Trim());
 
             for(int i = 0; i < fileImportContent.Length; i++)

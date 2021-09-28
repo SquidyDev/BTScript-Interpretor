@@ -1,17 +1,7 @@
-calleable abs a {
-	b = 0
-	
-	$ Si a est inférieur à 0
-	if a < 0 {
-		b = a - a - a
-	} else {
-		b = a
-	}
-	
-	$On retourne la valeur absolu de a
-	return b
-}
+import Lib/maths.bts
 
-$Affiche la valeur absolu de -250 (250)
-c = call abs -250
-print c
+calleable Main args {
+	$Affiche la valeur absolu de -250 (250)
+	c = call circle_area 10
+	print c
+}

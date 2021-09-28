@@ -9,6 +9,7 @@ namespace Bits_Script_Interpreter.Evaluator.Bool
 {
     static class Interpreter_Bool_Evaluator
     {
+        /*Check if the expression can be evealuate as a bool*/
         public static bool CanEvaluate(string expression)
         {
             try 
@@ -26,6 +27,7 @@ namespace Bits_Script_Interpreter.Evaluator.Bool
             }
         }
 
+        /*use to replace all the variable in the operation by there value*/
         public static string[] ReplaceVariable(string[] parsed)
         {
             for(int i = 0; i < parsed.Length; i++)
@@ -41,6 +43,7 @@ namespace Bits_Script_Interpreter.Evaluator.Bool
             return parsed;
         }
 
+        /*Replace True & False by number*/
         public static string[] ReplaceBoolean(string[] parsed)
         {
             string[] output = parsed;
@@ -56,11 +59,13 @@ namespace Bits_Script_Interpreter.Evaluator.Bool
             return output;
         }
 
+        /*use to parse the evaluation*/
         public static string[] ParseEvaluation(string expression)
         {
             return ReplaceBoolean(ReplaceVariable(expression.Split(' ')));
         }
 
+        /*Evaluate a string to return a bool?*/
         public static bool? Evaluate(string expression)
         {
             string[] parsedExpression = ParseEvaluation(expression);
@@ -75,6 +80,7 @@ namespace Bits_Script_Interpreter.Evaluator.Bool
 
         public static class Bool_Evaluator_Core
         {
+            /*Following functions are evalution function*/
             public static bool Greater(string a, string b) { return double.Parse(a) > double.Parse(b); }
             public static bool GreaterOrEqual(string a, string b) { return double.Parse(a) >= double.Parse(b); }
             public static bool Lesser(string a, string b) { return double.Parse(a) < double.Parse(b); }
@@ -82,6 +88,7 @@ namespace Bits_Script_Interpreter.Evaluator.Bool
             public static bool Equal(string a, string b) { return double.Parse(a) == double.Parse(b); }
             public static bool NotEqual(string a, string b) { return double.Parse(a) != double.Parse(b); }
 
+            /*Use to solve the evaluation, it check the sign and then do operation depending on what it is*/
             public static bool? ResolveEvaluation(string[] expression)
             {
                 bool? result = null;
