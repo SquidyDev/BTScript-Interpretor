@@ -1,7 +1,14 @@
-import Lib/maths.bts
+PI = 3,141592653
+
+$ Return the size of the area of ​​the circle depending on his diameter
+calleable circle_area radius {
+	radius_square = radius * radius
+	result = PI * radius_square
+	return result
+}
 
 calleable Main args {
 	$Affiche la valeur absolu de -250 (250)
-	c = call circle_area 10
+	c = call circle_area 15
 	print c
 }
